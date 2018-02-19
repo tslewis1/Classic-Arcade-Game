@@ -25,6 +25,20 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+// Player class that must avoid the enemies
+var Player =  function() {
+	this.sprite = 'images/char-horn-girl.png';
+};
+
+// Update the player's position
+Player.prototype.update = function(dt) {
+
+};
+
+// Draw the player on the screen
+Player.prototype.render = function() {
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
