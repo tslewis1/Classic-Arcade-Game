@@ -43,16 +43,16 @@ class Player {
 	handleInput(key) {
 		switch (key) {
   		case 'left': 
-  			this.x--;
+  			if (this.x > 0) this.x--;
     		break;
   		case 'up': 
-  			this.y++;
+  			if(this.y < 4) this.y++;
   			break;
   		case 'right': 
-  			this.x++;
+  			if(this.x < 4) this.x++;
     		break;
     	case 'down': 
-    		this.y--;
+    		if(this.y > 0) this.y--;
     		break;
   		default:
   			console.log('Error');
