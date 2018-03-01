@@ -28,23 +28,42 @@ class Enemy {
 // a handleInput() method.
 
 // Player class that must avoid the enemies
-var Player =  function() {
-	this.sprite = 'images/char-horn-girl.png';
-};
-
-// Update the player's position
-Player.prototype.update = function(dt) {
-
-};
-
-// Draw the player on the screen
-Player.prototype.render = function() {
-	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
 class Player {
+	constructor() {
+		this.sprite = 'images/char-horn-girl.png';
+		this.x = 2;
+		this.y = 0;
+	};
 
-}
+	// Update the player's position
+	update(dt) {
+
+	};
+
+	handleInput(key) {
+		switch (key) {
+  		case 'left': 
+  			this.x--;
+    		break;
+  		case 'up': 
+  			this.y++;
+  			break;
+  		case 'right': 
+  			this.x++;
+    		break;
+    	case 'down': 
+    		this.y--;
+    		break;
+  		default:
+  			console.log('Error');
+		};
+	};
+
+	// Draw the player on the screen
+	render() {
+		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+	};
+};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
