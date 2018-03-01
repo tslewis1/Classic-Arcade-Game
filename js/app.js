@@ -33,26 +33,29 @@ class Player {
 		this.sprite = 'images/char-horn-girl.png';
 		this.x = 2;
 		this.y = 0;
+		this.deltaX = 0;
+		this.deltaY = 0;
 	};
 
 	// Update the player's position
-	update(dt) {
-
+	update() {
+		this.x = this.x + deltaX;
+		this.y = this.y + deltaY;
 	};
 
 	handleInput(key) {
 		switch (key) {
   		case 'left': 
-  			if (this.x > 0) this.x--;
+  			if (this.x > 0) this.deltaX = -1;
     		break;
   		case 'up': 
-  			if(this.y < 4) this.y++;
+  			if(this.y < 4) this.deltaY = +1;
   			break;
   		case 'right': 
-  			if(this.x < 4) this.x++;
+  			if(this.x < 4) this.deltaX = +1;
     		break;
     	case 'down': 
-    		if(this.y > 0) this.y--;
+    		if(this.y > 0) this.deltaY = -1;
     		break;
   		default:
   			console.log('Error');
