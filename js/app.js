@@ -4,6 +4,9 @@ class Enemy {
 	// The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 		this.sprite = 'images/enemy-bug.png';
+		this.speed = Math.floor(Math.random() * 4) + 2;
+		this.x = 0;
+		this.y = Math.floor(Math.random() * 3) + 1  ;
 	};
 
 	// Update the enemy's position, required method for game
@@ -12,7 +15,9 @@ class Enemy {
 	// You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    	this.x = this.x + this.speed * dt;
 	};
+
 	// Draw the enemy on the screen
 	render() {
 		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -37,6 +42,9 @@ Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+class Player {
+
+}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
