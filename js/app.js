@@ -44,8 +44,8 @@ class Player {
 
 	// Update the player's position
 	update() {
-		this.x = this.x + deltaX;
-		this.y = this.y + deltaY;
+		this.x = this.x + this.deltaX;
+		this.y = this.y + this.deltaY;
 	};
 
 	handleInput(key) {
@@ -79,6 +79,15 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+
+var player = new Player();
+
+var allEnemies = [];
+
+for(var i = 0; i <= 5; i++) {
+	var enemy = new Enemy();
+	allEnemies.push(enemy);
+};
 
 
 
