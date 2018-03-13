@@ -19,13 +19,13 @@ class Enemy {
 
     	// Creates method to handle enemy and player collision. On collision, the game resets.
     	if ((this.x == player.x) && (this.y = player.y)) {
-    		wd.location.reload(true);
+    		location.reload(true);
     	};
 	};
 
 	// Draw the enemy on the screen
 	render() {
-		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+		ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
 	};
 };
 // Now write your own player class
@@ -37,7 +37,7 @@ class Player {
 	constructor() {
 		this.sprite = 'images/char-horn-girl.png';
 		this.x = 2;
-		this.y = 0;
+		this.y = 5;
 		this.deltaX = 0;
 		this.deltaY = 0;
 	};
@@ -46,6 +46,7 @@ class Player {
 	update() {
 		this.x = this.x + this.deltaX;
 		this.y = this.y + this.deltaY;
+		console.log(this);
 	};
 
 	handleInput(key) {
@@ -73,7 +74,7 @@ class Player {
 
 	// Draw the player on the screen
 	render() {
-		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+		ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
 	};
 };
 // Now instantiate your objects.
