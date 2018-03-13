@@ -45,20 +45,22 @@ class Player {
 	// Update the player's position
 	update() {
 		this.x = this.x + (this.deltaX);
+		this.deltaX = 0;
 		this.y = this.y + (this.deltaY);
+		this.deltaY = 0;
 		console.log(this);
 	};
 
 	// Handles key input to change player location based on key presses
-	
+
 	handleInput(key) {
 		switch (key) {
   		case 'left': 
   			if (this.x > 0) this.deltaX = -1;
     		break;
   		case 'up': 
-  			if(this.y < 4) {
-  				this.deltaY = +1; }
+  			if(this.y > 0) {
+  				this.deltaY = -1; }
  			else {
  				this.deltaY = -this.y; 
  				this.deltaX = -this.x + 2; }
@@ -67,7 +69,7 @@ class Player {
   			if(this.x < 4) this.deltaX = +1;
     		break;
     	case 'down': 
-    		if(this.y > 0) this.deltaY = -1;
+    		if(this.y < 5) this.deltaY = +1;
     		break;
   		default:
   			console.log('Error');
