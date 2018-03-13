@@ -16,6 +16,11 @@ class Enemy {
     // which will ensure the game runs at the same speed for
     // all computers.
     	this.x = this.x + this.speed * dt;
+
+    	// Creates method to handle enemy and player collision. On collision, the game resets.
+    	if ((this.x == player.x) && (this.y = player.y)) {
+    		wd.location.reload(true);
+    	};
 	};
 
 	// Draw the enemy on the screen
@@ -49,7 +54,11 @@ class Player {
   			if (this.x > 0) this.deltaX = -1;
     		break;
   		case 'up': 
-  			if(this.y < 4) this.deltaY = +1;
+  			if(this.y < 4) {
+  				this.deltaY = +1; }
+ 			else {
+ 				this.deltaY = -this.y; 
+ 				this.deltaX = -this.x + 2; }
   			break;
   		case 'right': 
   			if(this.x < 4) this.deltaX = +1;
