@@ -44,11 +44,13 @@ class Player {
 
 	// Update the player's position
 	update() {
-		this.x = this.x + this.deltaX;
-		this.y = this.y + this.deltaY;
+		this.x = this.x + (this.deltaX);
+		this.y = this.y + (this.deltaY);
 		console.log(this);
 	};
 
+	// Handles key input to change player location based on key presses
+	
 	handleInput(key) {
 		switch (key) {
   		case 'left': 
@@ -90,8 +92,6 @@ for(var i = 0; i <= 5; i++) {
 	allEnemies.push(enemy);
 };
 
-
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -104,3 +104,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
