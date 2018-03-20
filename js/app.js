@@ -5,7 +5,7 @@ class Enemy {
     // a helper we've provided to easily load images
 		this.sprite = 'images/enemy-bug.png';
 		this.speed = Math.floor(Math.random() * 4) + 2;
-		this.x = 0.5;
+		this.x = 0;
 		this.y = (Math.floor(Math.random() * 3) + 1) - 0.5  ;
 	};
 
@@ -30,7 +30,7 @@ class Enemy {
 
 	// Draw the enemy on the screen
 	render() {
-		ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+		ctx.drawImage(Resources.get(this.sprite), (this.x  + 0.5) * 101, this.y * 83);
 	};
 };
 // Now write your own player class
@@ -42,7 +42,7 @@ class Player {
 	constructor() {
 		this.sprite = 'images/char-horn-girl.png';
 		this.x = 2;
-		this.y = 4.5;
+		this.y = 4;
 		this.deltaX = 0;
 		this.deltaY = 0;
 	};
@@ -54,6 +54,13 @@ class Player {
 		this.y = this.y + (this.deltaY);
 		this.deltaY = 0;
 		console.log(this);
+
+		// When player reaches the water, options to play again appear
+		if(this.y < 1) {
+			setTimeout(function(){location.reload(true)}, 500);
+			// $("#congratulationsmodal").show();
+		};
+
 	};
 
 	// Handles key input to change player location based on key presses
@@ -81,16 +88,11 @@ class Player {
 		};
 	};
 
-	// When player reaches the water, options to play again appear
-	// if(this.y == 0) {
-	// 	$("#congratulationsmodal").show();
-	// };
-
 	// If player wants to play again, yes button resets the game and no button closes pop up
 
 	// Draw the player on the screen
 	render() {
-		ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+		ctx.drawImage(Resources.get(this.sprite), this.x * 101, (this.y + 0.5) * 83);
 	};
 };
 // Now instantiate your objects.
@@ -101,7 +103,7 @@ var player = new Player();
 
 var allEnemies = [];
 
-for(var i = 0; i <= 5; i++) {
+for(var i = 0; i <= 3; i++) {
 	var enemy = new Enemy();
 	allEnemies.push(enemy);
 };
