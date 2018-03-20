@@ -5,8 +5,8 @@ class Enemy {
     // a helper we've provided to easily load images
 		this.sprite = 'images/enemy-bug.png';
 		this.speed = Math.floor(Math.random() * 4) + 2;
-		this.x = 0;
-		this.y = Math.floor(Math.random() * 3) + 1  ;
+		this.x = 0.5;
+		this.y = (Math.floor(Math.random() * 3) + 1) - 0.5  ;
 	};
 
 	// Update the enemy's position, required method for game
@@ -18,8 +18,13 @@ class Enemy {
     	this.x = this.x + this.speed * dt;
 
     	// Creates method to handle enemy and player collision. On collision, the game resets.
-    	if ((this.x == player.x) && (this.y = player.y)) {
+    	if ((this.x == player.x) && (this.y == player.y)) {
     		location.reload(true);
+    	};
+
+    	// When enemy goes off screen, this resets their location
+    	if(this.x > 5) {
+    		this.x = -1;
     	};
 	};
 
@@ -37,7 +42,7 @@ class Player {
 	constructor() {
 		this.sprite = 'images/char-horn-girl.png';
 		this.x = 2;
-		this.y = 5;
+		this.y = 4.5;
 		this.deltaX = 0;
 		this.deltaY = 0;
 	};
@@ -76,6 +81,13 @@ class Player {
 		};
 	};
 
+	// When player reaches the water, options to play again appear
+	// if(this.y == 0) {
+	// 	$("#congratulationsmodal").show();
+	// };
+
+	// If player wants to play again, yes button resets the game and no button closes pop up
+
 	// Draw the player on the screen
 	render() {
 		ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
@@ -104,6 +116,7 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
+console.log(enemy.x, enemy.y, player.x, player.y);
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
