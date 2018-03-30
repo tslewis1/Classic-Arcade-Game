@@ -57,9 +57,12 @@ class Player {
 		console.log(this);
 
 		// When player reaches the water, options to play again appear
-		if(this.y < 2) {
-			setTimeout(function(){location.reload(true)}, 500);
-			// $("#congratulationsmodal").show();
+		if(this.y == 1) {
+			setTimeout(
+				function(){
+					player.y = 5;
+					$("#congratulationsModal").show();
+			}, 300);
 		};
 
 	};
@@ -91,6 +94,7 @@ class Player {
 
 	// If player wants to play again, yes button resets the game and no button closes pop up
 
+
 	// Draw the player on the screen
 	render() {
 		ctx.drawImage(Resources.get(this.sprite), this.x * 101, (this.y - 0.5) * 83);
@@ -104,7 +108,7 @@ var player = new Player();
 
 var allEnemies = [];
 
-for(var i = 0; i <= 2; i++) {
+for(var i = 0; i <= 1; i++) {
 	var enemy = new Enemy();
 	allEnemies.push(enemy);
 };
@@ -123,3 +127,9 @@ console.log(enemy.x, enemy.y, player.x, player.y);
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+$("#no").on("click", function() {
+	$("#congratulationsModal").hide();
+});
+$("#yes").on("click", function() {
+	location.reload(true);
+});
