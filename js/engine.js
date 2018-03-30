@@ -80,6 +80,16 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
+        
+        // When player reaches the water, options to play again appear
+        if(this.y == 1) {
+            setTimeout(
+                function(){
+                    player.y = 5;
+                    $("#congratulationsModal").show();
+            }, 300);
+        };
+
     }
 
     /* This is called by the update function and loops through all of the
@@ -162,6 +172,7 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
