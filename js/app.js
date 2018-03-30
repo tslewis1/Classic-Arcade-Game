@@ -6,7 +6,7 @@ class Enemy {
 		this.sprite = 'images/enemy-bug.png';
 		this.speed = Math.floor(Math.random() * 4) + 2;
 		this.x = 0;
-		this.y = (Math.floor(Math.random() * 3) + 1) - 0.5  ;
+		this.y = (Math.floor(Math.random() * 3) + 1);
 	};
 
 	// Update the enemy's position, required method for game
@@ -16,9 +16,10 @@ class Enemy {
     // which will ensure the game runs at the same speed for
     // all computers.
     	this.x = this.x + this.speed * dt;
+    	// alert(this.x + " " + this.speed + " " + dt);
 
     	// Creates method to handle enemy and player collision. On collision, the game resets.
-    	if ((this.x == player.x) && (this.y == player.y)) {
+    	if ((Math.round(this.x) == player.x) && (this.y == player.y)) {
     		location.reload(true);
     	};
 
@@ -30,7 +31,7 @@ class Enemy {
 
 	// Draw the enemy on the screen
 	render() {
-		ctx.drawImage(Resources.get(this.sprite), (this.x  + 0.5) * 101, this.y * 83);
+		ctx.drawImage(Resources.get(this.sprite), (this.x  + 0.5) * 101, (this.y - 0.5) * 83);
 	};
 };
 // Now write your own player class
@@ -42,7 +43,7 @@ class Player {
 	constructor() {
 		this.sprite = 'images/char-horn-girl.png';
 		this.x = 2;
-		this.y = 4;
+		this.y = 5;
 		this.deltaX = 0;
 		this.deltaY = 0;
 	};
@@ -56,7 +57,7 @@ class Player {
 		console.log(this);
 
 		// When player reaches the water, options to play again appear
-		if(this.y < 1) {
+		if(this.y < 2) {
 			setTimeout(function(){location.reload(true)}, 500);
 			// $("#congratulationsmodal").show();
 		};
@@ -81,7 +82,7 @@ class Player {
   			if(this.x < 4) this.deltaX = +1;
     		break;
     	case 'down': 
-    		if(this.y < 5) this.deltaY = +1;
+    		if(this.y < 4) this.deltaY = +1;
     		break;
   		default:
   			console.log('Error');
@@ -92,7 +93,7 @@ class Player {
 
 	// Draw the player on the screen
 	render() {
-		ctx.drawImage(Resources.get(this.sprite), this.x * 101, (this.y + 0.5) * 83);
+		ctx.drawImage(Resources.get(this.sprite), this.x * 101, (this.y - 0.5) * 83);
 	};
 };
 // Now instantiate your objects.
@@ -103,7 +104,7 @@ var player = new Player();
 
 var allEnemies = [];
 
-for(var i = 0; i <= 3; i++) {
+for(var i = 0; i <= 2; i++) {
 	var enemy = new Enemy();
 	allEnemies.push(enemy);
 };
