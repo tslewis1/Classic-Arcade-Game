@@ -55,6 +55,16 @@ class Player {
 		this.y = this.y + (this.deltaY);
 		this.deltaY = 0;
 		console.log(this);
+
+		// When player reaches the water, options to play again appear
+		if(this.y == 1) {
+			setTimeout(
+				function(){
+					player.y = 5;
+					$("#congratulationsModal").show();
+			}, 300);
+		};
+
 	};
 
 	// Handles key input to change player location based on key presses
@@ -120,6 +130,7 @@ console.log(enemy.x, enemy.y, player.x, player.y);
 $("#no").on("click", function() {
 	$("#congratulationsModal").hide();
 });
+
 $("#yes").on("click", function() {
 	location.reload(true);
 });
