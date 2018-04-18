@@ -59,10 +59,9 @@ class Player {
 		// When player reaches the water, options to play again appear
 		if(this.y == 1) {
 			setTimeout(
-				function(){
-					player.y = 5;
-					$("#congratulationsModal").show();
-			}, 300);
+				function() {
+					endOfGame();
+				}, 300);
 		};
 
 	};
@@ -113,9 +112,20 @@ for(var i = 0; i <= 1; i++) {
 	allEnemies.push(enemy);
 };
 
+function endOfGame() {
+// stop enemies' movements
+	player.deltaX = 0;
+	player.deltaY = 0;
+	$(document).off();
+	for(var i = 0; i <= allEnemies.length; i++){
+		allEnemies[i].speed = 0;
+	};
+	$("#congratulationsModal").show();
+};
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+$(document).on("keyup", function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
@@ -133,4 +143,5 @@ $("#no").on("click", function() {
 
 $("#yes").on("click", function() {
 	location.reload(true);
+	$(document).on();
 });
