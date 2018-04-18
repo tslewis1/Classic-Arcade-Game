@@ -54,10 +54,9 @@ class Player {
 		this.deltaX = 0;
 		this.y = this.y + (this.deltaY);
 		this.deltaY = 0;
-		console.log(this);
 
 		// When player reaches the water, options to play again appear
-		if(this.y == 1) {
+		if((this.y == 1) && (gameIsDone == false)) {
 			setTimeout(
 				function() {
 					endOfGame();
@@ -107,6 +106,8 @@ var player = new Player();
 
 var allEnemies = [];
 
+var gameIsDone = false;
+
 for(var i = 0; i <= 1; i++) {
 	var enemy = new Enemy();
 	allEnemies.push(enemy);
@@ -116,11 +117,14 @@ function endOfGame() {
 // stop enemies' movements
 	player.deltaX = 0;
 	player.deltaY = 0;
-	$(document).off();
-	for(var i = 0; i <= allEnemies.length; i++){
+	$(document).off("keyup");
+	for(var i = 0; i < allEnemies.length; i++){
 		allEnemies[i].speed = 0;
 	};
 	$("#congratulationsModal").show();
+	console.log("hello");
+
+	gameIsDone = true;
 };
 
 // This listens for key presses and sends the keys to your
@@ -137,11 +141,11 @@ console.log(enemy.x, enemy.y, player.x, player.y);
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-$("#no").on("click", function() {
-	$("#congratulationsModal").hide();
+$(document).on("click", "#no", function() {
+	$(this).parent().parent().parent().css("display", "none");
 });
 
-$("#yes").on("click", function() {
+$(document).on("click", "#yes", function() {
 	location.reload(true);
 	$(document).on();
 });
