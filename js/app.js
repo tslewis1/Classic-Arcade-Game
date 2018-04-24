@@ -6,7 +6,7 @@ class Enemy {
 		this.speed = Math.floor(Math.random() * 4) + 2;
 		this.x = 0;
 		this.y = (Math.floor(Math.random() * 3) + 1);
-	};
+	}
 
 	// Update the enemy's position
 	// Parameter: dt, a time delta between ticks
@@ -16,19 +16,19 @@ class Enemy {
     	// Creates method to handle enemy and player collision. On collision, the game resets.
     	if ((Math.round(this.x) == player.x) && (this.y == player.y)) {
     		location.reload(true);
-    	};
+    	}
 
     	// When enemy goes off screen, this resets their location
     	if(this.x > 5) {
     		this.x = -1;
-    	};
-	};
+    	}
+	}
 
 	// Draw the enemy on the screen
 	render() {
 		ctx.drawImage(Resources.get(this.sprite), (this.x  + 0.5) * 101, (this.y - 0.5) * 83);
-	};
-};
+	}
+}
 
 // Player class that must avoid the enemies
 class Player {
@@ -38,7 +38,7 @@ class Player {
 		this.y = 5;
 		this.deltaX = 0;
 		this.deltaY = 0;
-	};
+	}
 
 	// Update the player's position
 	update() {
@@ -48,14 +48,13 @@ class Player {
 		this.deltaY = 0;
 
 		// When player reaches the water, options to play again appear
-		if((this.y == 1) && (gameIsDone == false)) {
+		if((this.y == 1) && (gameIsDone === false)) {
 			setTimeout(
 				function() {
 					endOfGame();
 				}, 300);
-		};
-
-	};
+		}
+	}
 
 	// Handles key input to change player location based on key presses
 
@@ -79,8 +78,8 @@ class Player {
     		break;
   		default:
   			console.log('Error');
-		};
-	};
+		}
+	}
 
 	// If player wants to play again, yes button resets the game and no button closes pop up
 
@@ -88,8 +87,8 @@ class Player {
 	// Draw the player on the screen
 	render() {
 		ctx.drawImage(Resources.get(this.sprite), this.x * 101, (this.y - 0.5) * 83);
-	};
-};
+	}
+}
 
 var player = new Player();
 
@@ -100,7 +99,7 @@ var gameIsDone = false;
 for(var i = 0; i <= 1; i++) {
 	var enemy = new Enemy();
 	allEnemies.push(enemy);
-};
+}
 
 function endOfGame() {
 // stop enemies' movements
@@ -109,12 +108,12 @@ function endOfGame() {
 	$(document).off("keyup");
 	for(var i = 0; i < allEnemies.length; i++){
 		allEnemies[i].speed = 0;
-	};
+	}
 	$("#congratulationsModal").show();
 	console.log("hello");
 
 	gameIsDone = true;
-};
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
